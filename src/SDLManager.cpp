@@ -42,50 +42,23 @@ void SDLManager::refreshWindow(){
 #ifndef NLOG
     logger << "REFRESH!" << std::endl;
 #endif
-    SDL_LockSurface(surface);
-    uint32_t * pixels = (uint32_t*)surface->pixels;
-    if (zoomTime == 1){
-        std::copy(tmp, tmp + 160 * 144, pixels);
-    } else{
-        for(Byte i = 0; i < 144; ++i){
-
-            uint32_t * lineBegin = pixels + i * 160 * zoomTime * zoomTime;
-            for(Byte j = 0; j < 160; ++j){
-                uint32_t *blockBegin = lineBegin + j * zoomTime;
-                for(Byte k = 0; k < zoomTime; ++k){
-                    blockBegin[k] = tmp[i * 160 + j];
-                }
-            }
-            for (Byte m = 1; m < zoomTime; ++m){
-                std::copy(lineBegin, lineBegin + zoomTime * 160, lineBegin + m * zoomTime * 160);
-            }
-        }
-    }
-    SDL_UnlockSurface(surface);
-    SDL_UpdateWindowSurface(win);
-
-    if (SDL_GetTicks() - fpsTimer < 1000 / fps)
-    {
-#ifndef NLOG
-        logger << "frameTime:" << SDL_GetTicks() - fpsTimer << std::endl;
-#endif
-        SDL_Delay(1000 / fps - SDL_GetTicks() + fpsTimer);
-
-    }
+    SDL_UpdateTexture(texture, nullptr, tmp, WINDOW_WIDTH * sizeof (uint32_t));
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+    SDL_RenderPresent(renderer);
     fpsTimer = SDL_GetTicks();
-
 }
 
 SDLManager::~SDLManager(){
-    SDL_FreeFormat(fmt);
-    SDL_FreeSurface(surface);
-    SDL_DestroyWindow(win);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyTexture(texture);
+    SDL_DestroyWindow(window);
     SDL_Quit();
 }
 
 Uint32 SDLManager::mapColor(Byte grayCode) {
     Color color = realColorMap[colorMapChoice][grayCode];
-    return SDL_MapRGBA(fmt, color.r, color.g, color.b, color.a);
+    return SDL_MapRGBA(format, color.r, color.g, color.b, color.a);
 }
 
 void SDLManager::setLine(Byte lineNum, Uint32 *line) {
@@ -199,17 +172,23 @@ void SDLManager::init(const std::string &title_window, int zoomTime, int xPos, i
     if (initRes < 0){
         throw SDLException("init");
     }
-    win = SDL_CreateWindow(title_window.c_str(), xPos, yPos, WINDOW_WIDTH * zoomTime,WINDOW_HEIGHT * zoomTime, SDL_WINDOW_SHOWN);
-    if (win == nullptr){
+    window = SDL_CreateWindow(title_window.c_str(),
+                              xPos,
+                              yPos,
+                              WINDOW_WIDTH * zoomTime,
+                              WINDOW_HEIGHT * zoomTime, SDL_WINDOW_SHOWN);
+    if (window == nullptr){
         throw SDLException("window create");
     }
-    surface = SDL_GetWindowSurface(win);
-    //todo: set a flag pf Uint32 in surface
-    //???
-    fmt = surface->format;
-    auto pixel_format = SDL_MapRGBA(surface->format, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_FillRect(surface, nullptr, pixel_format);
-    SDL_UpdateWindowSurface(win);
+    renderer = SDL_CreateRenderer(window,
+                                  -1,
+                                  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+    texture = SDL_CreateTexture(renderer,
+                                SDL_PIXELFORMAT_RGBA8888,
+                                SDL_TEXTUREACCESS_STREAMING,
+                                WINDOW_WIDTH,
+                                WINDOW_HEIGHT);
 }
 
 SDLManager *SDLManager::getSDLManager() {

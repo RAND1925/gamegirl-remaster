@@ -14,8 +14,7 @@ CMakeLists*
 /bin/
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
+[Dd]n]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
 x64/

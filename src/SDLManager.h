@@ -31,9 +31,10 @@ public:
 protected:
     SDLManager()= default;
 private:
-    SDL_Window *win{nullptr};
-    SDL_Surface *surface{nullptr};
-    SDL_PixelFormat* fmt{nullptr};
+    SDL_Window *window{nullptr};
+    SDL_PixelFormat* format{nullptr};
+    SDL_Renderer *renderer;
+    SDL_Texture *texture;
     SDL_Event e{};
 
     const static int WINDOW_HEIGHT = 144;
