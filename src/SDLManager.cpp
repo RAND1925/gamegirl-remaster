@@ -79,30 +79,30 @@ bool SDLManager::handleInput() {
                     return true;
                     //for column 1
                 case kR:
-                    setBit(joypadC1, 0);
+                    setBit<0>(joypadC1);
                     break;
                 case kL:
-                    setBit(joypadC1, 1);
+                    setBit<1>(joypadC1);
                     break;
                 case kU:
-                    setBit(joypadC1, 2);
+                    setBit<2>(joypadC1);
                     break;
                 case kD:
-                    setBit(joypadC1, 3);
+                    setBit<3>(joypadC1);
                     break;
 
                     //for column 0
                 case kA:
-                    setBit(joypadC0, 0);
+                    setBit<0>(joypadC0);
                     break;
                 case kB:
-                    setBit(joypadC0, 1);
+                    setBit<1>(joypadC0);
                     break;
                 case kSel:
-                    setBit(joypadC0, 2);
+                    setBit<2>(joypadC0);
                     break;
                 case kSta:
-                    setBit(joypadC0, 3);
+                    setBit<3>(joypadC0);
                     break;
             }
         } else if (e.type == SDL_KEYDOWN) {
@@ -111,30 +111,30 @@ bool SDLManager::handleInput() {
                     return true;
                 //for column 1
                 case kR:
-                    resetBit(joypadC1, 0);
+                    resetBit<0>(joypadC1);
                     break;
                 case kL:
-                    resetBit(joypadC1, 1);
+                    resetBit<1>(joypadC1);
                     break;
                 case kU:
-                    resetBit(joypadC1, 2);
+                    resetBit<2>(joypadC1);
                     break;
                 case kD:
-                    resetBit(joypadC1, 3);
+                    resetBit<3>(joypadC1);
                     break;
 
                     //for column 0
                 case kA:
-                    resetBit(joypadC0, 0);
+                    resetBit<0>(joypadC0);
                     break;
                 case kB:
-                    resetBit(joypadC0, 1);
+                    resetBit<1>(joypadC0);
                     break;
                 case kSel:
-                    resetBit(joypadC0, 2);
+                    resetBit<2>(joypadC0);
                     break;
                 case kSta:
-                    resetBit(joypadC0, 3);
+                    resetBit<3>(joypadC0);
                     break;
                 default:
                     break;
@@ -149,10 +149,10 @@ bool SDLManager::handleInput() {
 
 Byte SDLManager::getJoypad(Byte in) {
     in &= 0xF0u;
-    if (!getBit(in, 4)){
+    if (!getBit<4>(in)){
         in |= (joypadC1 & 0x0Fu);
     }
-    if (!getBit(in, 5)){
+    if (!getBit<5>(in)){
         in |= (joypadC0 & 0x0Fu);
     }
     return in;
@@ -189,6 +189,7 @@ void SDLManager::init(const std::string &title_window, int zoomTime, int xPos, i
                                 SDL_TEXTUREACCESS_STREAMING,
                                 WINDOW_WIDTH,
                                 WINDOW_HEIGHT);
+    format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
 }
 
 SDLManager *SDLManager::getSDLManager() {

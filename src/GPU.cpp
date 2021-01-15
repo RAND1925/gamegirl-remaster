@@ -87,12 +87,12 @@ void GPU::addTime(int clock)
         break;
     }
     if (regLineY == regLineYC){
-        setBit(regLcdStatus, 2);
+        setBit<2>(regLcdStatus);
         if (getBit(regLcdControl,6)){
             InterruptManager::getInterruptManager()->requestInterrupt(1);
         }
     } else {
-        resetBit(regLcdStatus, 2);
+        resetBit<2>(regLcdStatus);
     }
 }
 
@@ -143,13 +143,13 @@ void GPU::draw() {
         return;
     Byte lcdc = regLcdControl;
     bool lcdcEnabled = getBit(lcdc,7);
-    bool bgWinEnabled = getBit(lcdc, 0);
+    bool bgWinEnabled = getBit<0>(lcdc);
     bool bgWinDataLow = getBit(lcdc,4);
-    bool bgMapHigh = getBit(lcdc, 3);
+    bool bgMapHigh = getBit<3>(lcdc);
     bool winEnabled = getBit(lcdc,5);
     bool winMapHigh = getBit(lcdc,6);
-    bool spriteEnabled = getBit(lcdc, 1);
-    bool spriteLarge = getBit(lcdc, 2);
+    bool spriteEnabled = getBit<1>(lcdc);
+    bool spriteLarge = getBit<2>(lcdc);
 
     if (!lcdcEnabled) {
         //todo: turn off screen
@@ -427,7 +427,7 @@ void GPU::drawSprite(uint32_t * colorLine, bool spriteLarge) {
         }
         Byte chrCode = bytesOam[i + 2];
         Byte infoCode = bytesOam[i + 3];
-        bool yFlip = getBit(infoCode, 6);
+        bool yFlip = getBit<6>(infoCode);
         Word pixelAddress = (chrCode << 4u) + (yFlip?  (spriteHeight - 1 - yPixel) * 2  : yPixel * 2);
         ready_to_gender.emplace_back(spriteX, pixelAddress, infoCode);
     }
@@ -441,8 +441,8 @@ void GPU::drawSprite(uint32_t * colorLine, bool spriteLarge) {
         Byte colorLow = bytesVRam[pixelAddress];
         Byte colorHigh = bytesVRam[pixelAddress + 1];
         Byte infoCode = std::get<2>(s);
-        Byte grayPalette = getBit(infoCode, 4) ? regOBP1: regOBP0;
-        bool xFlip = getBit(infoCode, 5);
+        Byte grayPalette = getBit<4>(infoCode) ? regOBP1: regOBP0;
+        bool xFlip = getBit<5>(infoCode);
         for (Byte counter = 0; counter < 8; ++ counter) {
             int col = std::get<0>(s) + (xFlip ? counter : 7 - counter);
             if (col < 0 || col >= 160)

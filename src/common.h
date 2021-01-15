@@ -9,12 +9,32 @@
     using Byte = std::uint8_t;
     using Word = std::uint16_t;
     using SByte = std::int8_t;
-    using std::uint32_t;
     inline constexpr unsigned long long operator "" _kByte(const unsigned long long w){
         return w << 10;
-    };
-    Byte getBit(const Byte b, Byte p);
-    void setBit(Byte & b, Byte p);
-    void resetBit(Byte & b, Byte p);
+    }
 
+    template<int p, int f = 1<<p >
+    constexpr Byte getBit(Byte b) {
+        return (b >> p) & 1;
+    }
+
+    template<int p, int f = 1<<p >
+    constexpr void setBit(Byte &b) {
+        b |= f;
+    }
+
+    template<int p, int f = ~(1<<p) >
+    constexpr void resetBit(Byte &b) {
+        b &= f;
+    }
+    
+    constexpr Byte getBit(Byte b, Byte p) {
+        return static_cast<Byte>(b >> p) & 1;
+    }
+    constexpr void setBit(Byte &b, const Byte p) {
+        b |= (1 << p);
+    }
+    constexpr  void resetBit(Byte &b, const Byte p){
+        b &= ~(1 << p);
+    }
 #endif //GAMEGIRL_COMMON_H
