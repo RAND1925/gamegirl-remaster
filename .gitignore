@@ -8,7 +8,7 @@
 CMakeLists*
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-/src/cmake*
+/src/cmake-
 /doc
 /bin/
 
@@ -296,7 +296,7 @@ __pycache__/
 
 /.idea
 
-/cmake*
+/cmake-build-*
 /build
 /.vscode
 
