@@ -12,8 +12,8 @@
 class Joypad: public AddressSpace {
 public:
     void update();
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
     static Joypad* getJoypad(){
         static Joypad joypad;

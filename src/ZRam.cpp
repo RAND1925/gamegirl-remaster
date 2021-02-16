@@ -5,11 +5,11 @@
 #include "../include/ZRam.h"
 
 
-bool ZRam::accepts(Word address) {
+bool ZRam::accepts(Word address) const {
     return address >= offset && address < offset + length;
 }
 
-Byte ZRam::getByte(Word address) {
+Byte ZRam::getByte(Word address) const {
     return  bytes[address - offset];
 }
 

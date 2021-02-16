@@ -10,8 +10,8 @@
 #include"common.h"
 class AddressSpace {
 public:
-    virtual bool accepts(Word address) = 0;
-    virtual Byte getByte(Word address) = 0;
+    [[nodiscard]] virtual bool accepts(Word address) const = 0;
+    [[nodiscard]] virtual Byte getByte(Word address) const = 0;
     virtual void setByte(Word address, Byte value) = 0;
 };
 

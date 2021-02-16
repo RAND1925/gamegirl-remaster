@@ -14,8 +14,8 @@ private:
     std::array<Byte, 0x8000> rom{};
     std::string filePath;
 public:
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
     explicit Cartridge_ROM0(const std::string & filePath);
 };

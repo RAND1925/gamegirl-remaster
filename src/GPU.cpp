@@ -167,7 +167,7 @@ void GPU::draw() {
     SDLManager::getSDLManager()->setLine(regLineY, colorLine);
 }
 
-Byte GPU::getByte(Word address) {
+Byte GPU::getByte(Word address) const {
     if (address >= offsetVram && address < offsetVram + lengthVram)
         return bytesVRam[address - offsetVram];
     else if (address >= offsetChr && address < offsetChr + lengthChr)
@@ -209,7 +209,7 @@ Byte GPU::getByte(Word address) {
     return 0xFF;
 }
 
-bool GPU::accepts(Word address) {
+bool GPU::accepts(Word address) const {
     if (address >= offsetVram && address < offsetVram + lengthVram)
         return true;
     else if (address >= offsetChr && address < offsetChr + lengthChr)

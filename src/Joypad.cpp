@@ -4,11 +4,11 @@
 #include "../include/Joypad.h"
 
 
-bool Joypad::accepts(Word address) {
+bool Joypad::accepts(Word address) const {
     return address == 0xFF00;
 }
 
-Byte Joypad::getByte(Word address) {
+Byte Joypad::getByte(Word address) const {
     return regJoypad;
 }
 void Joypad::setByte(Word address, Byte value) {

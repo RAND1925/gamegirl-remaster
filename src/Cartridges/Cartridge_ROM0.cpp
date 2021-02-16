@@ -5,11 +5,11 @@
 #include "Cartridges/Cartridge_ROM0.h"
 #include <fstream>
 
-bool Cartridge_ROM0::accepts(Word address) {
+bool Cartridge_ROM0::accepts(Word address) const {
     return address < 0x8000;
 }
 
-Byte Cartridge_ROM0::getByte(Word address) {
+Byte Cartridge_ROM0::getByte(Word address) const {
     return rom[address];
 }
 

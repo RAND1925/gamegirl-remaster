@@ -5,11 +5,11 @@
 #include "../include/Boot.h"
 #include "../include/Exceptions.h"
 
-bool Boot::accepts(Word address) {
+bool Boot::accepts(Word address) const {
     return address < 0x100;
 }
 
-Byte Boot::getByte(Word address) {
+Byte Boot::getByte(Word address) const {
     return bios[address];
 }
 

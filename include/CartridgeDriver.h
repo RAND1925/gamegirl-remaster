@@ -45,8 +45,8 @@ private:
     int ramSizeMap[5] = {0, 2, 8, 32, 128};
     int romSizeMap[3] = {72, 80, 96};
     void genCartridge();
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
 
 #endif //GAMEGIRL_Cartridge_H

@@ -66,11 +66,11 @@ std::string CartridgeDriver::getTitle() {
     return title;
 }
 
-bool inline CartridgeDriver::accepts(Word address) {
+bool inline CartridgeDriver::accepts(Word address) const {
     return cartridgePointer->accepts(address);
 }
 
-Byte inline CartridgeDriver::getByte(Word address) {
+Byte inline CartridgeDriver::getByte(Word address) const {
     return cartridgePointer->getByte(address);
 }
 

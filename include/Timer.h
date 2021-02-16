@@ -11,10 +11,12 @@
 
 class Timer: public AddressSpace {
 public:
-    void addTime(Byte cycle);
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
+
+    void addTime(Byte cycle);
+
     static Timer* getTimer();
 
 protected:

@@ -16,8 +16,8 @@ public:
     void addTime(int clock);
     void init(bool useSprite);
 
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
     static GPU* getGPU(){
         static GPU gpu;

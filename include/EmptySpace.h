@@ -13,9 +13,9 @@
 #include "AddressSpace.h"
 class EmptySpace: public AddressSpace{
 public:
-    bool accepts(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
-    Byte getByte(Word address) override;
     static EmptySpace* getEmptySpace();
 
 protected:

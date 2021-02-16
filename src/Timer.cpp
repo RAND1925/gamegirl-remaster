@@ -2,7 +2,7 @@
 // Created by jjf09 on 2019/5/24.
 //
 
-#include "../include/Timer.h"
+#include "Timer.h"
 #include "../include/InterruptManager.h"
 #include "../include/Exceptions.h"
 
@@ -36,11 +36,11 @@ void Timer::addTime(Byte cycle) {
     }
 }
 
-bool Timer::accepts(Word address) {
+bool Timer::accepts(Word address) const {
     return address>=0xFF04 && address<=0xFF07;
 }
 
-Byte Timer::getByte(Word address) {
+Byte Timer::getByte(Word address) const {
     switch (address){
         case 0xFF04: return regDiv;
         case 0xFF05: return regTima;

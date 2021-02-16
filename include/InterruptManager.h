@@ -23,8 +23,8 @@ public:
     bool getIME();
     void setStop(bool newStop);
     void setHalt(bool newHalt);
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
 
     static InterruptManager* getInterruptManager();

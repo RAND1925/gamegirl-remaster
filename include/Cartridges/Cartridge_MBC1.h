@@ -14,8 +14,8 @@
 class Cartridge_MBC1: public Cartridge, public Battery{
 public:
     Cartridge_MBC1(const std::string& filePath, size_t romSize, size_t ramSize);
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
 
 private:

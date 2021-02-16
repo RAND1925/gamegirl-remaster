@@ -58,11 +58,11 @@ bool InterruptManager::handleHalt() {
     return false;
 }
 
-bool InterruptManager::accepts(Word address) {
+bool InterruptManager::accepts(Word address) const {
     return address == 0xFF0F || address == 0xFFFF;
 }
 
-Byte InterruptManager::getByte(Word address) {
+Byte InterruptManager::getByte(Word address) const {
     if (address == 0xFF0F) {
         return iF;
     } else if (address == 0xFFFF) {

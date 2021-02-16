@@ -11,8 +11,8 @@
 
 class ZRam: public AddressSpace {
 public:
-    bool accepts(Word address) override;
-    Byte getByte(Word address) override;
+    bool accepts(Word address) const override;
+    Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
     static ZRam* getZRam();
 protected:

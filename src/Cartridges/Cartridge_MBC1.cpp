@@ -24,11 +24,11 @@ Cartridge_MBC1::Cartridge_MBC1(const std::string &filePath, size_t romSize,
     savePath.replace(dotPos + 1,3, "sav");
     loadData(savePath);
 }
-bool Cartridge_MBC1::accepts(Word address) {
+bool Cartridge_MBC1::accepts(Word address) const {
     return address < 0x8000 || (address >= 0xA000 && address < 0xC000);
 }
 
-Byte Cartridge_MBC1::getByte(Word address) {
+Byte Cartridge_MBC1::getByte(Word address) const {
     Byte page = address >> 12u;
     if (page < 0x4){
         return rom[address];

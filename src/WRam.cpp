@@ -4,11 +4,10 @@
 #include "../include/WRam.h"
 
 
-bool WRam::accepts(Word address) {
+bool WRam::accepts(Word address) const {
     return address >= offset && address < offset + length;
 }
-
-Byte WRam::getByte(Word address) {
+Byte WRam::getByte(Word address) const {
     return  bytes[address & 0x1FFF];
 }
 
