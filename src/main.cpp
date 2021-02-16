@@ -87,7 +87,7 @@ bool init(int argc, char **argv) {
     std::ios::sync_with_stdio(false);
     CartridgeDriver::getCartridgeDriver()->openFile(FILE_PATH);
     SDLManager::getSDLManager()->init(CartridgeDriver::getCartridgeDriver()->getTitle(), zoomTime, xPos, yPos, fps);
-    GPU::getGPU()->init(useSprite);
+    (&GPU::getInstance())->init(useSprite);
     CPU::getCPU()->initMap();
     MMU::getMMU()->init();
 #ifndef NLOG
@@ -102,7 +102,7 @@ bool init(int argc, char **argv) {
     MMU::getMMU()->addAddressSpace(CartridgeDriver::getCartridgeDriver());
     MMU::getMMU()->addAddressSpace(WRam::getWRam());
     MMU::getMMU()->addAddressSpace(ZRam::getZRam());
-    MMU::getMMU()->addAddressSpace(GPU::getGPU());
+    MMU::getMMU()->addAddressSpace((&GPU::getInstance()));
     MMU::getMMU()->addAddressSpace(Timer::getTimer());
     MMU::getMMU()->addAddressSpace(Joypad::getJoypad());
     MMU::getMMU()->addAddressSpace(InterruptManager::getInterruptManager());
@@ -115,7 +115,7 @@ uint64_t step() {
     Joypad::getJoypad()->update();
     Byte cycle = CPU::getCPU()->step();
     Timer::getTimer()->addTime(cycle);
-    GPU::getGPU()->addTime(cycle);
+    (&GPU::getInstance())->addTime(cycle);
     return cycle;
 };
 

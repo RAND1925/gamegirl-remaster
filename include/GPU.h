@@ -5,10 +5,10 @@
 #include "common.h"
 #include "AddressSpace.h"
 #include "Logger.h"
-//
-// change the var name
-class GPU : public AddressSpace
-{
+#include "Singleton.h"
+
+
+class GPU: public Singleton<GPU>, public AddressSpace{
 
 public:
     /***********************************************/
@@ -19,10 +19,6 @@ public:
     bool accepts(Word address) const override;
     Byte getByte(Word address) const override;
     void setByte(Word address, Byte value) override;
-    static GPU* getGPU(){
-        static GPU gpu;
-        return &gpu;
-    }
 
     //it's the main cycle of the gpu
 
@@ -31,8 +27,7 @@ public:
     //some var used to Scroll
     //two byte to store joypad information
     //judge if it's direction or select
-protected:
-    GPU()= default;
+
 private:
     void setMode(Byte mode);
 

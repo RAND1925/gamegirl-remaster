@@ -38,42 +38,39 @@ void CartridgeDriver::openFile(const std::string &filePath) {
     title.reserve(0x142 - 0x134);
     std::copy(header + 0x134, header + 0x142, title.begin());
 
-    genCartridge();
+    loadCartridge();
 }
 
-void CartridgeDriver::genCartridge() {
+void CartridgeDriver::loadCartridge() {
     switch (cartridgeType) {
         case 0:
-            cartridgePointer = new Cartridge_ROM0(filePath);
+            cartridge = std::make_unique<Cartridge_ROM0>(filePath);
             break;
         case 1:
         case 2:
         case 3:
-            cartridgePointer = new Cartridge_MBC1(filePath, romSize, ramSize);
+            cartridge = std::make_unique<Cartridge_MBC1>(filePath, romSize, ramSize);
             break;
     }
 }
 
 CartridgeDriver::~CartridgeDriver() {
-    delete cartridgePointer;
+
 }
 
-Cartridge *CartridgeDriver::getCartridgePointer() {
-    return cartridgePointer;
-}
 
-std::string CartridgeDriver::getTitle() {
+const std::string& CartridgeDriver::getTitle() const {
     return title;
 }
 
 bool inline CartridgeDriver::accepts(Word address) const {
-    return cartridgePointer->accepts(address);
+    return cartridge->accepts(address);
 }
 
 Byte inline CartridgeDriver::getByte(Word address) const {
-    return cartridgePointer->getByte(address);
+    return cartridge->getByte(address);
 }
 
 void inline CartridgeDriver::setByte(Word address, Byte value) {
-    cartridgePointer->setByte(address, value);
+    cartridge->setByte(address, value);
 }

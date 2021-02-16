@@ -7,7 +7,7 @@
 
 #include "AddressSpace.h"
 
-class Boot : public AddressSpace {
+class Boot: public AddressSpace {
 public:
     bool accepts(Word address) const override;
     Byte getByte(Word address) const override;

@@ -4,8 +4,10 @@
 
 #ifndef GAMEGIRL_Cartridge_H
 #define GAMEGIRL_Cartridge_H
+
 #include <string>
 #include <fstream>
+#include <memory>
 #include "common.h"
 #include "AddressSpace.h"
 #include "Cartridges/Cartridge.h"
@@ -17,11 +19,9 @@ class CartridgeDriver final : public AddressSpace {
 public:
     void openFile(const std::string &filePath);
 
-   // void reopenFile(const std::string &filePath);
+    // void reopenFile(const std::string &filePath);
 
-    Cartridge *getCartridgePointer();
-
-    std::string getTitle();
+    const std::string &getTitle() const;
 
     ~CartridgeDriver();
 
@@ -30,11 +30,13 @@ public:
         return &cartridgeDriver;
     }
 
+    void loadCartridge();
+
 protected:
     CartridgeDriver() = default;
 
 private:
-    Cartridge *cartridgePointer{};
+    std::unique_ptr<Cartridge> cartridge;
     Byte cartridgeType{};
     Byte romBankCode{};
     Byte ramBankCode{};
@@ -44,9 +46,11 @@ private:
     std::string filePath;
     int ramSizeMap[5] = {0, 2, 8, 32, 128};
     int romSizeMap[3] = {72, 80, 96};
-    void genCartridge();
+
     bool accepts(Word address) const override;
+
     Byte getByte(Word address) const override;
+
     void setByte(Word address, Byte value) override;
 
 #endif //GAMEGIRL_Cartridge_H
