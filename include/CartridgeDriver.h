@@ -13,7 +13,7 @@
 #include "Cartridges/Cartridge_MBC1.h"
 
 
-class CartridgeDriver {
+class CartridgeDriver final : public AddressSpace {
 public:
     void openFile(const std::string &filePath);
 
@@ -45,6 +45,9 @@ private:
     int ramSizeMap[5] = {0, 2, 8, 32, 128};
     int romSizeMap[3] = {72, 80, 96};
     void genCartridge();
+    bool accepts(Word address) override;
+    Byte getByte(Word address) override;
+    void setByte(Word address, Byte value) override;
 
 #endif //GAMEGIRL_Cartridge_H
 };

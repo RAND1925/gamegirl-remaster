@@ -65,3 +65,15 @@ Cartridge *CartridgeDriver::getCartridgePointer() {
 std::string CartridgeDriver::getTitle() {
     return title;
 }
+
+bool inline CartridgeDriver::accepts(Word address) {
+    return cartridgePointer->accepts(address);
+}
+
+Byte inline CartridgeDriver::getByte(Word address) {
+    return cartridgePointer->getByte(address);
+}
+
+void inline CartridgeDriver::setByte(Word address, Byte value) {
+    cartridgePointer->setByte(address, value);
+}

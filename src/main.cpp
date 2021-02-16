@@ -99,7 +99,7 @@ bool init(int argc, char **argv) {
     } else {
         CPU::getCPU()->initRegistersAfterBoot();
     }
-    MMU::getMMU()->addAddressSpace(CartridgeDriver::getCartridgeDriver()->getCartridgePointer());
+    MMU::getMMU()->addAddressSpace(CartridgeDriver::getCartridgeDriver());
     MMU::getMMU()->addAddressSpace(WRam::getWRam());
     MMU::getMMU()->addAddressSpace(ZRam::getZRam());
     MMU::getMMU()->addAddressSpace(GPU::getGPU());
