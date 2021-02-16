@@ -2,7 +2,7 @@
 // Created by dell on 2019/6/5.
 //
 
-#include "ZRam.h"
+#include "../include/ZRam.h"
 
 
 bool ZRam::accepts(Word address) {

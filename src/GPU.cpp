@@ -1,11 +1,11 @@
 
 #include <algorithm>
 #include <tuple>
-#include "MMU.h"
-#include "GPU.h"
-#include "SDLManager.h"
-#include "InterruptManager.h"
-#include "Exceptions.h"
+#include "../include/MMU.h"
+#include "../include/GPU.h"
+#include "../include/SDLManager.h"
+#include "../include/InterruptManager.h"
+#include "../include/Exceptions.h"
 
 void GPU::addTime(int clock)
 {

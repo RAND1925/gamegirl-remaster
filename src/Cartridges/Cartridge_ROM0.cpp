@@ -2,7 +2,7 @@
 // Created by dell on 2019/6/15.
 //
 
-#include "Cartridge_ROM0.h"
+#include "Cartridges/Cartridge_ROM0.h"
 #include <fstream>
 
 bool Cartridge_ROM0::accepts(Word address) {

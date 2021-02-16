@@ -2,7 +2,7 @@
 // Created by dell on 2019/6/5.
 //
 
-#include "InterruptManager.h"
+#include "../include/InterruptManager.h"
 
 
 void InterruptManager::requestInterrupt(Byte bit) {

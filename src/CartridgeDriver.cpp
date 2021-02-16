@@ -2,10 +2,10 @@
 // Created by dell on 2019/6/3.
 //
 
-#include "CartridgeDriver.h"
-#include "Catridges/Cartridge_ROM0.h"
-#include "Catridges/Cartridge_MBC1.h"
-#include "Exceptions.h"
+#include "../include/CartridgeDriver.h"
+#include "../include/Cartridges/Cartridge_ROM0.h"
+#include "../include/Cartridges/Cartridge_MBC1.h"
+#include "../include/Exceptions.h"
 
 
 void CartridgeDriver::openFile(const std::string &filePath) {

@@ -2,15 +2,15 @@
 // Created by dell on 2019/6/3.
 //
 
-#ifndef GAMEGIRL_CATRIDGE_H
-#define GAMEGIRL_CATRIDGE_H
+#ifndef GAMEGIRL_Cartridge_H
+#define GAMEGIRL_Cartridge_H
 #include <string>
 #include <fstream>
 #include "common.h"
 #include "AddressSpace.h"
-#include "Catridges/Cartridge.h"
-#include "Catridges/Cartridge_ROM0.h"
-#include "Catridges/Cartridge_MBC1.h"
+#include "Cartridges/Cartridge.h"
+#include "Cartridges/Cartridge_ROM0.h"
+#include "Cartridges/Cartridge_MBC1.h"
 
 
 class CartridgeDriver {
@@ -46,5 +46,5 @@ private:
     int romSizeMap[3] = {72, 80, 96};
     void genCartridge();
 
-#endif //GAMEGIRL_CATRIDGE_H
+#endif //GAMEGIRL_Cartridge_H
 };

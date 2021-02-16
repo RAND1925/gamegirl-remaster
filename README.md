@@ -17,7 +17,7 @@ MINGW64 $ cmake .
 ````
 To complie the project on Linux:
 ````
-$ g++ ./Catridges/* ./*.cpp ./*.h -o gamegirl.out -O3 --std=c++17 -march=corei7-avx -lSDL2 -lSDL2main
+$ g++ ./Cartridges/* ./*.cpp ./*.h -o gamegirl.out -O3 --std=c++17 -march=corei7-avx -lSDL2 -lSDL2main
 ````
 (Note:It uses the avx--Advanced Vector Extensions)
 

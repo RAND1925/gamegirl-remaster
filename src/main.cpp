@@ -3,20 +3,20 @@ extern "C" {
 }
 #include <cstdlib>
 #include <string>
-#include "common.h"
-#include "MMU.h"
-#include "WRam.h"
-#include "ZRam.h"
-#include "GPU.h"
-#include "Timer.h"
-#include "CartridgeDriver.h"
-#include "InterruptManager.h"
-#include "CPU.h"
-#include "SDLManager.h"
-#include "Boot.h"
-#include "Joypad.h"
-#include "EmptySpace.h"
-#include "Logger.h"
+#include "../include/common.h"
+#include "../include/MMU.h"
+#include "../include/WRam.h"
+#include "../include/ZRam.h"
+#include "../include/GPU.h"
+#include "../include/Timer.h"
+#include "../include/CartridgeDriver.h"
+#include "../include/InterruptManager.h"
+#include "../include/CPU.h"
+#include "../include/SDLManager.h"
+#include "../include/Boot.h"
+#include "../include/Joypad.h"
+#include "../include/EmptySpace.h"
+#include "../include/Logger.h"
 
 
 bool isQuit = false;

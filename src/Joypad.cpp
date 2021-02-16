@@ -1,7 +1,7 @@
 // Created by dell on 2019/6/14.
 // 4MHz
 
-#include "Joypad.h"
+#include "../include/Joypad.h"
 
 
 bool Joypad::accepts(Word address) {

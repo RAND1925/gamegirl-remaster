@@ -2,9 +2,9 @@
 // Created by jjf09 on 2019/5/24.
 //
 
-#include "Timer.h"
-#include "InterruptManager.h"
-#include "Exceptions.h"
+#include "../include/Timer.h"
+#include "../include/InterruptManager.h"
+#include "../include/Exceptions.h"
 
 void Timer::addTime(Byte cycle) {
     divider+=cycle;

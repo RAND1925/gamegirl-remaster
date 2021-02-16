@@ -2,11 +2,11 @@
 // Created by dell on 2019/4/16.
 //
 
-#include "CPU.h"
-#include "common.h"
-#include "MMU.h"
-#include "InterruptManager.h"
-#include "Logger.h"
+#include "../include/CPU.h"
+#include "../include/common.h"
+#include "../include/MMU.h"
+#include "../include/InterruptManager.h"
+#include "../include/Logger.h"
 
 void CPU::initMap() {
 

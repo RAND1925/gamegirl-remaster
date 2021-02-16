@@ -2,7 +2,7 @@
 // Created by dell on 2019/6/15.
 //
 
-#include "Cartridge_MBC1.h"
+#include "Cartridges/Cartridge_MBC1.h"
 
 Cartridge_MBC1::Cartridge_MBC1(const std::string &filePath, size_t romSize,
                                size_t ramSize):filePath(filePath), romSize(romSize),ramSize(ramSize) {
@@ -42,6 +42,7 @@ Byte Cartridge_MBC1::getByte(Word address) {
     } else if(page == 0xA || page == 0xB){
         return ram[((uint64_t)ramBank << 13u) | (address & 0x1FFFu)];
     }
+    return 0;
 }
 
 void Cartridge_MBC1::setByte(Word address, Byte value) {
@@ -73,3 +74,4 @@ void Cartridge_MBC1::loadData(const std::string &savePath) {
     std::copy(buffer, buffer + ramSize, ram.begin());
     delete [] buffer;
 }
+

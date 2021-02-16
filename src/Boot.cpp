@@ -2,8 +2,8 @@
 // Created by dell on 2019/6/13.
 //
 
-#include "Boot.h"
-#include "Exceptions.h"
+#include "../include/Boot.h"
+#include "../include/Exceptions.h"
 
 bool Boot::accepts(Word address) {
     return address < 0x100;

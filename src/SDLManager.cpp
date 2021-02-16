@@ -4,6 +4,7 @@
 
 #include "SDLManager.h"
 #include "Logger.h"
+
 struct Color{
     Byte r, g, b, a;
 };

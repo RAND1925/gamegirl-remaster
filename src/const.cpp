@@ -1,4 +1,4 @@
-#include "const.h"
+#include "../include/const.h"
 const Word LCDC_ADDRESS = 0xFF40;
 const Word STAT_ADDRESS = 0xFF41;
 

@@ -11,7 +11,7 @@ CMakeLists*
 /src/cmake-*
 /doc
 /bin/
-!bin/SDL2.dll
+!build/debug/SDL2.dll
 
 # Build results
 [Dd]nebugPublic/

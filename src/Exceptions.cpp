@@ -9,8 +9,8 @@
 //
 // Created by dell on 2019/6/16.
 //
-#include "Exceptions.h"
 #include "SDL.h"
+#include "Exceptions.h"
 
 SDLException::SDLException(std::string msg) : _msg(std::move(msg)){
 #ifndef NLOG

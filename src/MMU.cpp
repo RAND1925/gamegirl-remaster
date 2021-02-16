@@ -3,8 +3,8 @@
 //
 
 #include <algorithm>
-#include "MMU.h"
-#include "Exceptions.h"
+#include "../include/MMU.h"
+#include "../include/Exceptions.h"
 
 AddressSpace *MMU::findAddressSpace(Word address) {
     for (auto s: spaces){
