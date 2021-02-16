@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
         while (CPU::getCPU()->getPC() < 0x100) {
             allCycle += step();
         }
-        MMU::getMMU()->removeAddressSpace(Boot::getBoot());
+        MMU::getMMU()->removeAddressSpace(*Boot::getBoot());
     }
     while (!isQuit) {
         allCycle += step();
@@ -94,19 +94,19 @@ bool init(int argc, char **argv) {
     logger.open("gamegirl.log");
 #endif
     if (useBoot){
-        MMU::getMMU()->addAddressSpace(Boot::getBoot());
+        MMU::getMMU()->addAddressSpace(* Boot::getBoot());
         CPU::getCPU()->initRegisters();
     } else {
         CPU::getCPU()->initRegistersAfterBoot();
     }
-    MMU::getMMU()->addAddressSpace(CartridgeDriver::getCartridgeDriver());
-    MMU::getMMU()->addAddressSpace(WRam::getWRam());
-    MMU::getMMU()->addAddressSpace(ZRam::getZRam());
-    MMU::getMMU()->addAddressSpace((&GPU::getInstance()));
-    MMU::getMMU()->addAddressSpace(Timer::getTimer());
-    MMU::getMMU()->addAddressSpace(Joypad::getJoypad());
-    MMU::getMMU()->addAddressSpace(InterruptManager::getInterruptManager());
-    MMU::getMMU()->addAddressSpace(EmptySpace::getEmptySpace());
+    MMU::getMMU()->addAddressSpace(*CartridgeDriver::getCartridgeDriver());
+    MMU::getMMU()->addAddressSpace(*WRam::getWRam());
+    MMU::getMMU()->addAddressSpace(*ZRam::getZRam());
+    MMU::getMMU()->addAddressSpace(GPU::getInstance());
+    MMU::getMMU()->addAddressSpace(*Timer::getTimer());
+    MMU::getMMU()->addAddressSpace(*Joypad::getJoypad());
+    MMU::getMMU()->addAddressSpace(*InterruptManager::getInterruptManager());
+    MMU::getMMU()->addAddressSpace(*EmptySpace::getEmptySpace());
     return useBoot;
 }
 

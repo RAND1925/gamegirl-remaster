@@ -13,4 +13,6 @@ Byte Boot::getByte(Word address) const {
     return bios[address];
 }
 
-void Boot::setByte(Word address, Byte value) {}
+void Boot::setByte(Word address, Byte value) {
+    throw;
+}

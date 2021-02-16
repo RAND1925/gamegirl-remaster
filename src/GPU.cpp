@@ -309,9 +309,9 @@ void GPU::doDMA(Byte dma) {
     logger << "DMA" << regDMA;
 #endif
     if ((dma >= 0xA0 && dma <= 0xF1) || dma <= 0x80){
-        AddressSpace * s = MMU::getMMU()->findAddressSpace(dmaAddress);
+        auto& s = MMU::getMMU()->findAddressSpace(dmaAddress);
         for (Byte i = 0; i < 0xA0; ++i){
-            bytesOam[i] = s->getByte(dmaAddress + i);
+            bytesOam[i] = s.getByte(dmaAddress + i);
         }
     } else if(dma >= 0x80 && dma < 0x98) {
         Word offset = dmaAddress - 0x8000;

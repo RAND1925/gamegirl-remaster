@@ -22,25 +22,27 @@ FFFF Interrupt Enable Register
 #define GAMEGIRL_MMU_H
 
 #include <vector>
+#include <memory>
 #include "common.h"
 #include "AddressSpace.h"
 
 class MMU {
 public:
-    Byte readByte(Word address);
-    Word readWord(Word address);
-    void writeByte(Word address, Byte value);
-    void writeWord(Word address, Word value);
-    AddressSpace * findAddressSpace(Word address);
-    void addAddressSpace(AddressSpace * s);;
-    void removeAddressSpace(AddressSpace * s);
+    [[nodiscard]] Byte readByte(Word address) const;
+    [[nodiscard]] Word readWord(Word address) const;
+    void writeByte(Word address, Byte value) const;
+    void writeWord(Word address, Word value) const;
+
+    AddressSpace& findAddressSpace(Word address) const;
+    void addAddressSpace(AddressSpace& s);
+    void removeAddressSpace(AddressSpace& s);
     void init();
     static MMU* getMMU();
 
 protected:
     MMU()= default;
 private:
-    std::vector<AddressSpace *> spaces{};
+    std::vector<std::reference_wrapper<AddressSpace> > spaces{};
 };
 
 #endif //GAMEGIRL_MMU_H
